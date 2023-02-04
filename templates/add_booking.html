@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>rent a car</title>
+</head>
+<body>
+     <form action="" method="post">
+  {{ form.hidden_tag() }}
+  <div>
+      {{form.carId.label }}{{ form.carId() }}<br>
+    {{ form.from_date.label }} {{ form.from_date(size=20) }}
+  </div>
+  <div>
+    {{ form.to_date.label }} {{ form.to_date(size=20) }}
+  </div>
+  <input type="submit" value="Save">
+</form>
+
+</body>
+</html>

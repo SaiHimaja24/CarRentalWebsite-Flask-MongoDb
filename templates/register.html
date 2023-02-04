@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Registration</title>
+  </head>
+  <body>
+    <h2>Register</h2>
+    <form action="" method="post" enctype="multipart/form-data">
+      {{ form.hidden_tag() }}
+      <div>
+        {{ form.name.label }} {{ form.name(size=32) }}
+        {% for error in form.name.errors %}
+          <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+      </div>
+      <div>
+        {{ form.email.label }} {{ form.email(size=32) }}
+        {% for error in form.email.errors %}
+          <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+      </div>
+      <div>
+        {{ form.password.label }} {{ form.password(size=32) }}
+        {% for error in form.password.errors %}
+          <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+      </div>
+      <div>
+        {{ form.password2.label }} {{ form.password2(size=32) }}
+        {% for error in form.password2.errors %}
+          <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+      </div>
+      <div>
+        {{ form.phone.label }} {{ form.phone(size=32) }}
+        {% for error in form.phone.errors %}
+          <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+      </div>
+      <div>
+        {{ form.age.label }} {{ form.age(size=32) }}
+        {% for error in form.age.errors %}
+          <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+      </div>
+      <div>
+        {{ form.gender.label }} {{ form.gender() }}
+        {% for error in form.gender.errors %}
+          <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+      </div>
+      <div>
+        {{ form.licence.label }} {{ form.licence() }}
+        {% for error in form.licence.errors %}
+          <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+      </div>
+      <div><input type="submit" value="Register"></div>
+    </form>
+  </body>
+</html>
+
