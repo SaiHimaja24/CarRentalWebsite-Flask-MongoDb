@@ -16,7 +16,7 @@ from flask_login import UserMixin, login_user, logout_user, login_manager, Login
 #from flask_loginmanager import
 from flask_mongoengine import MongoEngine, Document
 import flask
-from flask_loginmanager import LoginManager
+#from flask_loginmanager import LoginManager
 from flask_login import LoginManager
 from flask_mongoengine.wtf import model_form
 from werkzeug.utils import secure_filename
