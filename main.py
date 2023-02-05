@@ -1,7 +1,7 @@
 import flask_login
 #import flask_loginmanager
 from flask import Flask, render_template, request, redirect, url_for, flash, session
-from flask_session import Session
+#from flask_session import Session
 from flask_mongoengine import mongoengine
 #from flask_sqlalchemy.session import Session
 from flask_wtf import FlaskForm, Form
@@ -38,7 +38,7 @@ app.config['SESSION_TYPE'] = 'mongodb'
 db = MongoEngine()
 db.init_app(app)
 #db.connect('SaiHimaja', host='SaiHimaja:SaHi%401$10@saihimaja.a89gxsr', port=27017, username='Himaja N', password='SaHi@1$10')
-Session(app)
+session(app)
 #app.config['UPLOAD_FOLDER'] = r'C:\Users\LENOVO\PycharmProjects\SaHi Car Rentals\static\images'
 login_manager = LoginManager()
 login_manager.init_app(app)
