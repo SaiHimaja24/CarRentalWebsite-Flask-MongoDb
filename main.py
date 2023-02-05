@@ -34,12 +34,12 @@ app.config['MONGODB_SETTINGS'] = {
     'host': 'localhost',
     'port': 27017
 }
-app.config['SESSION_TYPE'] = 'mongodb'
+#app.config['SESSION_TYPE'] = 'mongodb'
 app.config['SESSION_MONGODB'] = MongoEngine
+Session(app)
 db = MongoEngine()
 db.init_app(app)
 #db.connect('SaiHimaja', host='SaiHimaja:SaHi%401$10@saihimaja.a89gxsr', port=27017, username='Himaja N', password='SaHi@1$10')
-Session(app)
 #app.config['UPLOAD_FOLDER'] = r'C:\Users\LENOVO\PycharmProjects\SaHi Car Rentals\static\images'
 login_manager = LoginManager()
 login_manager.init_app(app)
