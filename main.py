@@ -7,7 +7,7 @@ from flask_wtf import FlaskForm, Form
 from wtforms import RadioField
 from wtforms.validators import DataRequired
 from flask_login import UserMixin, LoginManager
-from wtforms import Form, BooleanField, StringField, PasswordField, IntegerField, validators, EmailField, DateTimeField, DecimalField, FileField, SubmitField, SelectField, DateField
+from wtforms import Form, BooleanField, StringField, PasswordField, IntegerField, validators, DateTimeField, DecimalField, FileField, SubmitField, SelectField, DateField
 from wtforms.validators import ValidationError, Length, EqualTo, InputRequired, Email, DataRequired
 from flask_wtf.file import FileField, FileRequired
 from werkzeug.security import generate_password_hash, check_password_hash
