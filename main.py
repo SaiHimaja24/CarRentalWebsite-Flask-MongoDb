@@ -3,7 +3,6 @@ import flask_login
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 from flask_session import Session
 from flask_mongoengine import mongoengine
-#from flask_sqlalchemy.session import Session
 from flask_wtf import FlaskForm, Form
 from wtforms import RadioField
 from wtforms.validators import DataRequired
