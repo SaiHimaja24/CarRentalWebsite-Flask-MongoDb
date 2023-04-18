@@ -15,7 +15,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin, login_user, logout_user, login_manager, LoginManager, current_user, user_logged_out, user_logged_in, login_required, logout_user
 from flask_mongoengine import MongoEngine, Document
 import flask
-from flask_loginmanager import LoginManager
+#from flask_loginmanager import LoginManager
 from flask_login import LoginManager
 from flask_mongoengine.wtf import model_form
 from werkzeug.utils import secure_filename
