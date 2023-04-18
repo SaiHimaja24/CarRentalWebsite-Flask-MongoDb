@@ -143,7 +143,8 @@ def display_cars():
 def add_booking():
     form = BookingForm(request.form)
     if request.method == 'POST' and form.validate():
-        booking = Booking(carId=form.carId.data, from_date=form.from_date.data, to_date=form.to_date.data)
+        if form.validate_on_submit():
+            booking = Booking(carId=form.carId.data, from_date=form.from_date.data, to_date=form.to_date.data)
             booking.save()
             session['booking_id'] = str(booking.id)
             flash('Booking successful!')
