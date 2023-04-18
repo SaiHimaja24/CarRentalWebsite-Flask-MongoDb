@@ -4,17 +4,16 @@
     <meta charset="UTF-8">
     <title>rent a car</title>
 </head>
+
 <body>
-     <form action="" method="post">
+     <form action="" method="get" enctype="multipart/form-data">
   {{ form.hidden_tag() }}
   <div>
       {{form.carId.label }}{{ form.carId() }}<br>
-    {{ form.from_date.label }} {{ form.from_date(size=20) }}
+    {{ form.from_date.label }} {{ form.from_date }}<br>
+    {{ form.to_date.label }} {{ form.to_date }}
   </div>
-  <div>
-    {{ form.to_date.label }} {{ form.to_date(size=20) }}
-  </div>
-  <input type="submit" value="Save">
+         <div><input type="submit" value="Save Booking"></div>
 </form>
 
 </body>
