@@ -13,8 +13,6 @@ from wtforms.validators import ValidationError, Length, EqualTo, InputRequired, 
 from flask_wtf.file import FileField, FileRequired
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin, login_user, logout_user, login_manager, LoginManager, current_user, user_logged_out, user_logged_in, login_required, logout_user
-#from flask_login import login_required, current_user
-#from flask_loginmanager import
 from flask_mongoengine import MongoEngine, Document
 import flask
 from flask_loginmanager import LoginManager
