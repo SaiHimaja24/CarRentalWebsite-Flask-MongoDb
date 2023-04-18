@@ -1,13 +1,14 @@
 import flask_login
 #import flask_loginmanager
 from flask import Flask, render_template, request, redirect, url_for, flash, session
+from flask_session import Session
 from flask_mongoengine import mongoengine
 #from flask_sqlalchemy.session import Session
 from flask_wtf import FlaskForm, Form
 from wtforms import RadioField
 from wtforms.validators import DataRequired
 from flask_login import UserMixin, LoginManager
-#from wtforms import Form, BooleanField, StringField, PasswordField, IntegerField, validators, EmailField, DateTimeField, DecimalField, FileField, SubmitField, SelectField, DateField
+from wtforms import Form, BooleanField, StringField, PasswordField, IntegerField, validators, DateTimeField, DecimalField, FileField, SubmitField, SelectField, DateField
 from wtforms.validators import ValidationError, Length, EqualTo, InputRequired, Email, DataRequired
 from flask_wtf.file import FileField, FileRequired
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -25,34 +26,21 @@ import urllib.request
 import hashlib
 #port = int(os.environ.get('PORT', 27017)
 
-app = flask.Flask("__name__")
-app.config['SECRET_KEY'] = 'SaiHimaja'
-
+app = Flask("__name__")
+app.config['SESSION_TYPE'] = 'filesystem'
+app.config['SECRET_KEY'] = 'NSH'
 app.config['MONGODB_SETTINGS'] = {
     'db': 'Car',
     'host': 'localhost',
     'port': 27017
 }
-app.config['SESSION_TYPE'] = 'mongodb'
+app.config['SESSION_MONGODB'] = MongoEngine
+Session(app)
 db = MongoEngine()
 db.init_app(app)
-#db.connect('SaiHimaja', host='SaiHimaja:SaHi%401$10@saihimaja.a89gxsr', port=27017, username='Himaja N', password='SaHi@1$10')
-Session(app)
-#app.config['UPLOAD_FOLDER'] = r'C:\Users\LENOVO\PycharmProjects\SaHi Car Rentals\static\images'
+
 login_manager = LoginManager()
 login_manager.init_app(app)
-
-
-
-
-@login_manager.user_loader
-def load_user(user_id):
-    '''for user in Users:
-        if user.id == int(user_id):
-            return user
-    return None'''
-    return Users.objects(pk=user_id).first()
-
 
 class Users(db.Document, UserMixin):
     name = db.StringField(required=True)
@@ -65,26 +53,8 @@ class Users(db.Document, UserMixin):
 
 class Booking(db.Document):
     carId = db.StringField(required=True)
-    from_date = db.DateTimeField(required=True)
-    to_date = db.DateTimeField(required=True)
-
-#class Feedback(Document):
- #   feedback = StringField(required=True)
-
-
-class FiveSCar(db.Document):
-    FuelType = db.StringField()
-    CarName = db.StringField()
-    Image = db.ImageField()
-    price = db.StringField()
-
-class SevenSCar(db.Document):
-    FuelType = db.StringField()
-    CarName = db.StringField()
-    Image = db.ImageField()
-    price = db.StringField()
-
-
+    from_date = db.DateField(required=True)
+    to_date = db.DateField(required=True)
 
 class HomeForm(FlaskForm):
     name = StringField('What is your name?')
@@ -106,20 +76,19 @@ class RegisterForm(FlaskForm):
     licence = FileField('Licence Image')
 
 
-
 class ImageForm(FlaskForm):
     images = [FileField('Image %d' % i) for i in range(1, 4)]
 
-
 class BookingForm(FlaskForm):
-    carId = StringField('Car Id', validators=[InputRequired()])
-    from_date = DateField('From Date', validators=[DataRequired()])
-    to_date = DateField('To Date', validators=[DataRequired()])
+    carId = StringField('Car ID', validators=[DataRequired()])
+    from_date = DateField('Start Date', validators=[DataRequired()])
+    to_date = DateField('End Date', validators=[DataRequired()])
+    submit = SubmitField('Submit')
+    
+@login_manager.user_loader
+def load_user(user_id):
+    return Users.objects(pk=user_id).first()
 
-
-'''class FeedbackForm(FlaskForm):
-    feedback = StringField('Feedback', validators=[InputRequired()])
-    submit = SubmitField('Submit')'''
 
 @app.route('/')
 def index():
@@ -163,33 +132,23 @@ def register():
         return redirect(url_for('index'))
     return render_template('register.html', form=form)
 
-@app.route('/display-cars', methods=['GET', 'POST'])
+@app.route('/display_cars', methods=['GET', 'POST'])
 @login_required
 def display_cars():
     form = ImageForm()
     return render_template('display_cars.html', form=form)
 
-@app.route('/add-booking', methods=['GET', 'POST'])
+@app.route('/add_booking', methods=['GET', 'POST'])
 @login_required
 def add_booking():
     form = BookingForm(request.form)
     if request.method == 'POST' and form.validate():
-        booking = Booking(carId=form.carId.data,from_date=form.from_date.data, to_date=form.to_date.data)
-        booking.save()
-        session['booking_id'] = str(booking.id)
-        flash('Booking successful! Booking ID: ' + session['booking_id'])
+        booking = Booking(carId=form.carId.data, from_date=form.from_date.data, to_date=form.to_date.data)
+            booking.save()
+            session['booking_id'] = str(booking.id)
+            flash('Booking successful!')
         return redirect(url_for('index'))
     return render_template('add_booking.html', form=form)
-
-'''@app.route('/feedback', methods=['GET', 'POST'])
-def feedback():
-    form = FeedbackForm()
-    if request.method == 'POST' and form.validate():
-        text = Feedback(feedback=form.feedback.data)
-        text.save()
-        #flash('Feedback submitted successfully! Feedback: ' +session['feedback'])
-        return redirect(url_for('index'))
-    return render_template('feedback.html', form=form)'''
 
 
 @app.route('/logout', methods = ['GET'])
@@ -197,8 +156,6 @@ def feedback():
 def logout():
     logout_user()
     return redirect(url_for('index'))
-
-
 
 
 if __name__ == '__main__':
