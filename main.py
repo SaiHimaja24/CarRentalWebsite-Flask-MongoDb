@@ -22,7 +22,6 @@ from werkzeug.utils import secure_filename
 import os
 import urllib.request
 import hashlib
-#port = int(os.environ.get('PORT', 27017)
 
 app = Flask("__name__")
 app.config['SESSION_TYPE'] = 'filesystem'
