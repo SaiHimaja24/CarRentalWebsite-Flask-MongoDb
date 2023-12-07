@@ -30,7 +30,9 @@ To run this project locally, follow these steps:
 
 **Technologies Used**
 
-Python: The primary programming language.
-Flask: A lightweight web framework for building web applications.
-MongoDB: A NoSQL database for storing car and user data.
+**Python**: The primary programming language.
+
+**Flask**: A lightweight web framework for building web applications.
+
+**MongoDB**: A NoSQL database for storing car and user data.
 
