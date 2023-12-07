@@ -8,7 +8,6 @@ Welcome to the Car Rental Website project! This web application is built using P
 - **Car Listings:** Browse a diverse range of available cars with detailed information.
 - **Booking System:** Reserve your desired car for specific dates.
 - **User Dashboard:** Track and manage your bookings in a personalized user dashboard.
-- **Admin Panel:** Manage car listings, user reservations, and site content easily.
 
 ## Getting Started
 
