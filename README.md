@@ -29,6 +29,7 @@ To run this project locally, follow these steps:
 5. Visit http://localhost:5000 in your web browser to access the application.
 
 **Technologies Used**
+
 Python: The primary programming language.
 Flask: A lightweight web framework for building web applications.
 MongoDB: A NoSQL database for storing car and user data.
